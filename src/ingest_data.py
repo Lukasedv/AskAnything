@@ -13,7 +13,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 FILE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-
 def main(args: argparse.Namespace) -> dict:
     res = {"status": 0, "message": "Success"}
 
@@ -114,7 +113,11 @@ def main(args: argparse.Namespace) -> dict:
     print(f"Number of text chunks after filtering: {len(all_texts)}")
 
     # Embedding model
-    embedding = OpenAIEmbeddings()
+    embedding = OpenAIEmbeddings(
+        deployment="embeddings",
+        model="text-embedding-ada-002",
+        chunk_size=1
+    )
 
     # Supplying a persist_directory will store the embeddings on disk
     persist_directory = os.path.join(FILE_ROOT, CHROMA_DB_DIR, args.site.replace(".", "_")).rstrip("/")
