@@ -6,3 +6,4 @@ tiktoken
 chromadb
 langchain
 nest_asyncio
+streamlit
