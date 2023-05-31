@@ -20,10 +20,10 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 
-openai.api_type = os.environ.get["OPENAI_API_TYPE"]
-openai.api_key = os.environ.get["OPENAI_API_KEY"]
-openai.api_base = os.environ.get["OPENAI_API_BASE"]
-openai.api_version = os.environ.get["OPENAI_API_VERSION"]
+openai.api_type = os.environ["OPENAI_API_TYPE"]
+openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.api_base = os.environ["OPENAI_API_BASE"]
+openai.api_version = os.environ["OPENAI_API_VERSION"]
 
 FILE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
