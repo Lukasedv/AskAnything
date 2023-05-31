@@ -20,6 +20,11 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 
+openai.api_type = os.environ.get["OPENAI_API_TYPE"]
+openai.api_key = os.environ.get["OPENAI_API_KEY"]
+openai.api_base = os.environ.get["OPENAI_API_BASE"]
+openai.api_version = os.environ.get["OPENAI_API_VERSION"]
+
 FILE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 parser = argparse.ArgumentParser()
@@ -114,7 +119,11 @@ def get_vector_db(file_path: str) -> Chroma:
         with tarfile.open(tarball_fn, "r:gz") as tar:
             tar.extractall(path=os.path.dirname(file_path))
 
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(
+        deployment="embeddings",
+        model="text-embedding-ada-002",
+        chunk_size=1
+    )
     return Chroma(persist_directory=file_path, embedding_function=embeddings)
 
 # Get query parameters
@@ -257,8 +266,9 @@ async def main(human_prompt: str) -> dict:
             # Call the OpenAI ChatGPT API for final result
             reply_text = ""
             async for chunk in await openai.ChatCompletion.acreate(
-                model=NLP_MODEL_NAME,
+                engine="gpt-4",
                 messages=messages,
+                deployment_id="gpt-4",
                 max_tokens=NLP_MODEL_REPLY_MAX_TOKENS,
                 stop=NLP_MODEL_STOP_WORDS,
                 stream=True,
