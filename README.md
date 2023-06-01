@@ -4,7 +4,7 @@ Tweaked original repo to work with Azure instead - also changed site to tampere.
 
 To work with Azure you need to export the following env variables:
 
-openai.api_type = os.environ["OPENAI_API_TYPE"]
-openai.api_key = os.environ["OPENAI_API_KEY"]
-openai.api_base = os.environ["OPENAI_API_BASE"]
-openai.api_version = os.environ["OPENAI_API_VERSION"]
+OPENAI_API_TYPE="azure"
+OPENAI_API_KEY="key"
+OPENAI_API_BASE="url"
+OPENAI_API_VERSION="version"
