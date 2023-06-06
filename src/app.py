@@ -341,7 +341,7 @@ with footer:
     st.markdown(FOOTER_HTML, unsafe_allow_html=True)
     st.write("")
     st.info(
-        f"Note: This app uses OpenAI's GPT-4 under the hood. The service may sometimes be busy, so please wait patiently if the reply doesn't begin immediately.",
+        f"Note: This is a quick demo for Tampere Smart City Expo and not meant for wide use. It can respond to questions that have answers on tampere.fi. This app uses OpenAI's GPT-4 under the hood. Please wait patiently if the reply doesn't begin immediately.",
         icon="ℹ️")
 
 # Initialize/maintain a chat log so we can keep tabs on previous Q&As
